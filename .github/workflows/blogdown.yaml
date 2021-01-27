@@ -8,7 +8,7 @@ name: blogdown
 
 jobs:
   build:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -40,9 +40,6 @@ jobs:
       - name: Build site
         run: |
           R -e 'blogdown::build_site(TRUE)'
-
-      - name: Install npm
-        uses: actions/setup-node@v1
 
       - name: Deploy to GitHub Pages
         uses: Cecilapp/GitHub-Pages-deploy@master
