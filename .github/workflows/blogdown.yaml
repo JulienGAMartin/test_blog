@@ -8,7 +8,7 @@ name: blogdown
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -41,9 +41,13 @@ jobs:
         run: |
           R -e 'blogdown::build_site(TRUE)'
 
+      - name: Install npm
+        uses: actions/setup-node@v1
+
       - name: Deploy to GitHub Pages
-        uses: Cecilapp/GitHub-Pages-deploy@master
-        env:
-           EMAIL: ${{ secrets.EMAIL }}               # must be a verified email
-           GH_TOKEN: ${{ secrets.GH_PAT }} # https://github.com/settings/tokens
-           BUILD_DIR: public/                     # "_site/" by default
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: public/ # The folder the action should deploy.
+          CLEAN: true 
