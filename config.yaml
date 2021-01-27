@@ -1,6 +1,6 @@
 theme: starter-academic
 title: Academic
-baseurl: ''
+baseurl: 'https://juliengamartin.github.io/test_blog/'
 copyright: ''
 enableGitInfo: no
 defaultContentLanguage: en
